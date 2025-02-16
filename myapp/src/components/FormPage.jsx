@@ -42,7 +42,7 @@ const FormPage = () => {
         return;
       }
   
-      // Only accept image files
+      
       if (!file.type.startsWith('image/')) {
         setErrors({ ...errors, image: 'Please select a valid image file.' });
         return;
@@ -51,10 +51,10 @@ const FormPage = () => {
       setIsUploading(true);
       setErrors({ ...errors, image: '' });
 
-      // Upload image to Cloudinary (example)
+      
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('upload_preset', 'scavos'); // Replace with your Cloudinary upload preset
+      formData.append('upload_preset', 'scavos'); 
 
       fetch('https://api.cloudinary.com/v1_1/diqkdjkl9/image/upload', {
         method: 'POST',
@@ -62,10 +62,10 @@ const FormPage = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log('Cloudinary Response:', data); // Debugging: Log the response
+          console.log('Cloudinary Response:', data); 
           if (data.secure_url) {
-            setImage(data.secure_url); // Save the image URL
-            setIsUploading(false); // Upload complete
+            setImage(data.secure_url); 
+            setIsUploading(false);
           } else {
             throw new Error('Image URL not found in response');
           }
@@ -86,13 +86,13 @@ const FormPage = () => {
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = 'Email is invalid';
     }
-    if (!image) newErrors.image = 'Image is required';
+    if (!image) newErrors.image = 'Image is required'
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 const  handleBack=(e)=>{
   e.preventDefault();
-   navigate('/')
+   navigate('/ticket-gen')
 }
   const handleNext = (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -113,14 +113,13 @@ const  handleBack=(e)=>{
         },
       });
     } else {
-      console.log('Validation Errors:', errors); // Debugging: Log validation errors
+      console.log('Validation Errors:', errors);
     }
   };
 
-  // Handle keyboard events for form submission
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
-      e.preventDefault(); // Prevent default form submission
+      e.preventDefault(); 
       handleNext(e);
     }
   };
@@ -129,7 +128,7 @@ const  handleBack=(e)=>{
     <form
       className='form-container'
       noValidate
-      onKeyDown={handleKeyDown} // Handle Enter key for form submission
+      onKeyDown={handleKeyDown} 
     >
       <div className='form-container-border'>
         <div className='deets'>
