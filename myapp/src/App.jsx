@@ -12,7 +12,7 @@ const App = () => {
       <div>
         <Nav/>
       <Routes>
-        <Route index element={<TicketType />} />
+        <Route path="/ticket-gen"  element={<TicketType />} />
         <Route path="/form" element={<FormPage />} />
         <Route path="/ticket" element={<TicketPage />} />
       </Routes>
